@@ -15,7 +15,7 @@ def PlayerTurn(player):
 			board[MoveY][MoveX] = player 				#Jump move
 			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
 			Score[player] += 1															#to make another jump move if possible
-		else:																  
+		else:
 			print('INVALID MOVE!!!')
 			PlayerTurn(player)
 	else:
