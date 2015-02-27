@@ -1,5 +1,30 @@
 import os
 
+def MultiJump(player, PieceX, PieceY):
+	# Piece position = moved position.
+	#Already did this before start of function!
+													
+	# check if new jump is possible --> if not return(turns over)
+	if(True):#Jump move possible
+		
+		# get input again for new move position
+		MoveX, MoveY = input('Move?(x,y): ').split(',') #Co-ordinates of where you want to move it to
+		MoveX, MoveY = int(MoveX)-1, int(MoveY)-1
+		# check if jump move
+		if (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != '-' and board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != player):
+			# If jump --> Make jump then repeat
+			board[PieceY][PieceX] = '-'	
+			board[MoveY][MoveX] = player 				#Jump move
+			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
+			Score[player] += 1															#to make another jump move if possible
+			PieceX, PieceY = MoveX, MoveY
+			MultiJump(player, PieceX, PieceY)
+		else:
+			print('INVALID MOVE!!!')
+			MultiJump(player, PieceX, PieceY)
+		# If not --> Invalid move --> get input again. 
+	else:
+		return
 def PlayerTurn(player):
 	print('Player {}\'s turn:'.format(player))
 	PieceX, PieceY = input('Piece?(x,y): ').split(',')
@@ -16,12 +41,8 @@ def PlayerTurn(player):
 			board[MoveY][MoveX] = player 				#Jump move
 			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
 			Score[player] += 1															#to make another jump move if possible
-			# Piece position = moved position
-			# check if new jump is possible --> if not return(turns over)
-			# get input again for new move position
-			# check if jump move
-			# If jump --> Make jump then repeat
-			# If not --> Invalid move --> get input again. 
+			PieceX, PieceY = MoveX, MoveY
+			MultiJump(player, PieceX, PieceY)
 		else:
 			print('INVALID MOVE!!!')
 			PlayerTurn(player)
