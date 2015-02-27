@@ -14,7 +14,7 @@ def PlayerTurn(player):
 			board[PieceY][PieceX] = '-'							#Scoring Happens here
 			board[MoveY][MoveX] = player 						#Jump move
 			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
-			Score[player]++																#to make another jump move if possible
+			Score[player] += 1																#to make another jump move if possible
 		else:																  
 			print('INVALID MOVE!!!')
 			PlayerTurn(player)
@@ -23,7 +23,8 @@ def PlayerTurn(player):
 		PlayerTurn(player)
 
 def PrintBoard():
-	print('  1 2 3 4')
+	print('Player1(X): {} Player2(O): {}'.format(Score[Player1], Score[Player2]))
+	print('  1 2 3 4 5 6 7 8')
 	for i, j in enumerate(board):
 		print(i+1, end=' ')
 		for k in j:
