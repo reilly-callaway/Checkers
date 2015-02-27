@@ -10,11 +10,18 @@ def PlayerTurn(player):
 		if (MoveX == PieceX + 1 or MoveX == PieceX - 1) and (MoveY == PieceY + 1 or MoveY == PieceY - 1) and board[MoveY][MoveX] == '-':
 			board[PieceY][PieceX] = '-'
 			board[MoveY][MoveX] = player 				#Standard Move
+			return										#Turns over
 		elif (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != '-' and board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != player):
 			board[PieceY][PieceX] = '-'	
 			board[MoveY][MoveX] = player 				#Jump move
 			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
 			Score[player] += 1															#to make another jump move if possible
+			# Piece position = moved position
+			# check if new jump is possible --> if not return(turns over)
+			# get input again for new move position
+			# check if jump move
+			# If jump --> Make jump then repeat
+			# If not --> Invalid move --> get input again. 
 		else:
 			print('INVALID MOVE!!!')
 			PlayerTurn(player)
