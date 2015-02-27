@@ -3,18 +3,18 @@ import os
 def PlayerTurn(player):
 	print('Player {}\'s turn:'.format(player))
 	PieceX, PieceY = input('Piece?(x,y): ').split(',')
-	PieceX, PieceY = int(PieceX)-1, int(PieceY)-1
+	PieceX, PieceY = int(PieceX)-1, int(PieceY)-1		#Co-ordinates of the piece you want to move
 	if board[PieceY][PieceX] == player:
-		MoveX, MoveY = input('Move?(x,y): ').split(',')
+		MoveX, MoveY = input('Move?(x,y): ').split(',') #Co-ordinates of where you want to move it to
 		MoveX, MoveY = int(MoveX)-1, int(MoveY)-1
 		if (MoveX == PieceX + 1 or MoveX == PieceX - 1) and (MoveY == PieceY + 1 or MoveY == PieceY - 1) and board[MoveY][MoveX] == '-':
 			board[PieceY][PieceX] = '-'
-			board[MoveY][MoveX] = player #Standard Move
+			board[MoveY][MoveX] = player 				#Standard Move
 		elif (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != '-' and board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != player):
-			board[PieceY][PieceX] = '-'							#Scoring Happens here
-			board[MoveY][MoveX] = player 						#Jump move
+			board[PieceY][PieceX] = '-'	
+			board[MoveY][MoveX] = player 				#Jump move
 			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
-			Score[player] += 1																#to make another jump move if possible
+			Score[player] += 1															#to make another jump move if possible
 		else:																  
 			print('INVALID MOVE!!!')
 			PlayerTurn(player)
@@ -50,10 +50,12 @@ board = [
 while (True):
 	PrintBoard()
 	PlayerTurn(Player1)
-	if Score[Player1] >= 12: break;
-	os.system('CLS')
-	PrintBoard()
+	os.system('CLS')				#Remove this is using the IDLE, if using terminal/command line/cmd/whatever else you kids call it nowerdays:
+	if Score[Player1] >= 2: break;	#It will clear the terminal of all text so it doesn't look like reprinting the board over and over. Just one board :)
+	PrintBoard()			
 	PlayerTurn(Player2)
-	if Score[Player2] >= 12: break;
-	os.system('CLS')
+	os.system('CLS')				#Remove this one too if using IDLE, I haven't tested it but it will probably break it :(
+	if Score[Player2] >= 2: break;
 
+PrintBoard()
+print("Player 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
