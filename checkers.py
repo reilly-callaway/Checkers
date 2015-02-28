@@ -2,6 +2,8 @@ import os
 #If using the IDLE; remove all "os.system('CLS')" commands, they are pointed out in comments
 #The command is designed for terminal/command line use.
 
+#Important note: No error handling has been incorperated yet, if you enter co-ordinates in incorrectly, it will screw up
+#If you try to move outside the board, it will screw up but as long as you play by the rules, all should be good :)
 def PlayerTurn(player):
 	print('Player {}\'s turn:'.format(player))
 	PieceX, PieceY = input('Piece?(x,y): ').split(',')
@@ -32,7 +34,8 @@ def PlayerTurn(player):
 def JumpMoveCheck(player, PieceY, PieceX):
 	for Yadd in (1, -1):
 		for Xadd in (1, -1):
-			if(board[PieceY + Yadd][PieceX + Xadd] != '-' and board[PieceY + Yadd][PieceX + Xadd] != player and board[PieceY + (2*Yadd)][PieceX + (2*Xadd)] == '-'): return True;
+			if (len(board)-1 > (PieceY + Yadd)) and (len(board[PieceY + Yadd])-1 > (PieceX + Xadd)):
+				if(board[PieceY + Yadd][PieceX + Xadd] != '-' and board[PieceY + Yadd][PieceX + Xadd] != player and board[PieceY + (2*Yadd)][PieceX + (2*Xadd)] == '-'): return True;
 	return False
 
 def MultiJump(player, PieceX, PieceY):
@@ -78,7 +81,7 @@ Score = {Player1:0, Player2:0}
 board = [
 ['X', '*', 'X', '*', 'X', '*', 'X', '*'],
 ['*', 'X', '*', 'X', '*', 'X', '*', 'X'], 
-['X', '*', 'X', '*', 'X', '*', 'X', '*'], 
+['X', '*', 'X', '*', 'X', '*', 'X', '*'],
 ['*', '-', '*', '-', '*', '-', '*', '-'], 
 ['-', '*', '-', '*', '-', '*', '-', '*'],
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O'], 
@@ -90,11 +93,11 @@ while (True):
 	PrintBoard()
 	PlayerTurn(Player1)
 	os.system('CLS')				#Remove this is using the IDLE, if using terminal/command line/cmd/whatever else you kids call it nowerdays:
-	if Score[Player1] >= 4: break;	#It will clear the terminal of all text so it doesn't look like reprinting the board over and over. Just one board :)
+	if Score[Player1] >= 12: break;	#It will clear the terminal of all text so it doesn't look like reprinting the board over and over. Just one board :)
 	PrintBoard()			
 	PlayerTurn(Player2)
 	os.system('CLS')				#Remove this one too if using IDLE, I haven't tested it but it will probably break it :(
-	if Score[Player2] >= 4: break;
+	if Score[Player2] >= 12: break;
 
 PrintBoard()
 print("Player 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
