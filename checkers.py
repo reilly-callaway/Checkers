@@ -1,9 +1,11 @@
 import os
+
 #If using the IDLE; remove all "os.system('CLS')" commands, they are pointed out in comments
 #The command is designed for terminal/command line use.
 
 #Important note: No error handling has been incorperated yet, if you enter co-ordinates in incorrectly, it will screw up
 #If you try to move outside the board, it will screw up but as long as you play by the rules, all should be good :)
+
 def PlayerTurn(player):
 	print('Player {}\'s turn:'.format(player))
 	PieceX, PieceY = input('Piece?(x,y): ').split(',')
@@ -70,22 +72,22 @@ def PrintBoard():
 	for i, j in enumerate(board):
 		print(i+1, end=' ')
 		for k in j:
-			print(k, end=' ')
+			print(k, end=' ')		#Magic loops that unpack the board in a readable fashion
 		print()
 
-Player1 = 'X'
-Player2 = 'O'
+Player1 = 'X'						#If you don't like 'X''s and 'O''s you're welcome to change the pieces...
+Player2 = 'O'						#But... It will mean you have to change all the X's and O's in the board below(Ya, have fun trying to do that :P)
 
 Score = {Player1:0, Player2:0}
 
 board = [
 ['X', '*', 'X', '*', 'X', '*', 'X', '*'],
-['*', 'X', '*', 'X', '*', 'X', '*', 'X'], 
-['X', '*', 'X', '*', 'X', '*', 'X', '*'],
-['*', '-', '*', '-', '*', '-', '*', '-'], 
-['-', '*', '-', '*', '-', '*', '-', '*'],
-['*', 'O', '*', 'O', '*', 'O', '*', 'O'], 
-['O', '*', 'O', '*', 'O', '*', 'O', '*'],
+['*', 'X', '*', 'X', '*', 'X', '*', 'X'],	#I could write some fancy loops here instead
+['X', '*', 'X', '*', 'X', '*', 'X', '*'],	#But like, that requires thinking
+['*', '-', '*', '-', '*', '-', '*', '-'],	#And honestly I thought just writing it out would be easier
+['-', '*', '-', '*', '-', '*', '-', '*'],	#Now I think about it, it was probably a good idea purely for testing
+['*', 'O', '*', 'O', '*', 'O', '*', 'O'],
+['O', '*', 'O', '*', 'O', '*', 'O', '*'],	#You can move the pieces around to test it out if you want.
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O']]
 
 os.system('CLS')					#Remove this also if using the IDLE
