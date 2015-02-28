@@ -36,7 +36,7 @@ def PlayerTurn(player):
 def JumpMoveCheck(player, PieceY, PieceX):
 	for Yadd in (1, -1):
 		for Xadd in (1, -1):
-			if (len(board)-1 > (PieceY + Yadd)) and (len(board[PieceY + Yadd])-1 > (PieceX + Xadd)):
+			if (len(board)-1 > (PieceY + Yadd)) and (len(board[PieceY + Yadd])-1 > (PieceX + Xadd)) and (PieceY + Yadd >= 0) and (PieceX + Xadd >= 0):
 				if(board[PieceY + Yadd][PieceX + Xadd] != '-' and board[PieceY + Yadd][PieceX + Xadd] != player and board[PieceY + (2*Yadd)][PieceX + (2*Xadd)] == '-'): return True;
 	return False
 
