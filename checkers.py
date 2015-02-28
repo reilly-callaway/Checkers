@@ -1,5 +1,6 @@
 import os
-
+#If using the IDLE; remove all "os.system('CLS')" commands, they are pointed out in comments
+#The command is designed for terminal/command line use.
 
 def PlayerTurn(player):
 	print('Player {}\'s turn:'.format(player))
@@ -33,6 +34,7 @@ def JumpMoveCheck(player, PieceY, PieceX):
 		for Xadd in (1, -1):
 			if(board[PieceY + Yadd][PieceX + Xadd] != '-' and board[PieceY + Yadd][PieceX + Xadd] != player and board[PieceY + (2*Yadd)][PieceX + (2*Xadd)] == '-'): return True;
 	return False
+
 def MultiJump(player, PieceX, PieceY):
 	# Piece position = moved position.
 	#Already did this before start of function!
@@ -76,10 +78,10 @@ Score = {Player1:0, Player2:0}
 board = [
 ['X', '*', 'X', '*', 'X', '*', 'X', '*'],
 ['*', 'X', '*', 'X', '*', 'X', '*', 'X'], 
-['-', '*', '-', '*', 'X', '*', '-', '*'], 
-['*', 'X', '*', 'X', '*', 'X', '*', '-'], 
-['O', '*', '-', '*', '-', '*', '-', '*'],
-['*', '-', '*', 'O', '*', 'O', '*', 'O'], 
+['X', '*', 'X', '*', 'X', '*', 'X', '*'], 
+['*', '-', '*', '-', '*', '-', '*', '-'], 
+['-', '*', '-', '*', '-', '*', '-', '*'],
+['*', 'O', '*', 'O', '*', 'O', '*', 'O'], 
 ['O', '*', 'O', '*', 'O', '*', 'O', '*'],
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O']]
 
