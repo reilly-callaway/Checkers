@@ -14,14 +14,16 @@ def PlayerTurn(player):
 		MoveX, MoveY = input('Move?(x,y): ').split(',') #Co-ordinates of where you want to move it to
 		MoveX, MoveY = int(MoveX)-1, int(MoveY)-1
 		if (MoveX == PieceX + 1 or MoveX == PieceX - 1) and (MoveY == PieceY + 1 or MoveY == PieceY - 1) and board[MoveY][MoveX] == '-':
-			board[PieceY][PieceX] = '-'
+			board[PieceY][PieceX] = '-'					#^^ Checks if valid move
 			board[MoveY][MoveX] = player 				#Standard Move
-			return										#Turns over
-		elif (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != '-' and board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != player):
-			board[PieceY][PieceX] = '-'	
+			return										#Turn's over
+		elif (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] != '-' and board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] != player):
+			board[PieceY][PieceX] = '-'					#^^ Checks if valid move
 			board[MoveY][MoveX] = player 				#Jump move
-			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
-			Score[player] += 1															#to make another jump move if possible
+			board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] = '-' #Captures piece your jumping over
+			
+
+			Score[player] += 1
 			PieceX, PieceY = MoveX, MoveY
 			PrintBoard()
 			MultiJump(player, PieceX, PieceY)
@@ -50,11 +52,11 @@ def MultiJump(player, PieceX, PieceY):
 		MoveX, MoveY = input('Move?(x,y): ').split(',') #Co-ordinates of where you want to move it to
 		MoveX, MoveY = int(MoveX)-1, int(MoveY)-1
 		# check if jump move
-		if (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != '-' and board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] != player):
+		if (MoveX == PieceX + 2 or MoveX == PieceX - 2) and (MoveY == PieceY + 2 or MoveY == PieceY - 2) and (board[MoveY][MoveX] == '-') and (board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] != '-' and board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] != player):
 			# If jump --> Make jump then repeat
 			board[PieceY][PieceX] = '-'	
 			board[MoveY][MoveX] = player 				#Jump move
-			board[int(PieceY+((MoveY-PieceY)/2))][int(PieceX+((MoveX-PieceX)/2))] = '-' #Need to configure this so you have option 
+			board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] = '-' #Need to configure this so you have option 
 			Score[player] += 1															#to make another jump move if possible
 			PieceX, PieceY = MoveX, MoveY
 			PrintBoard()
@@ -85,7 +87,7 @@ board = [
 ['*', 'X', '*', 'X', '*', 'X', '*', 'X'],	#I could write some fancy loops here instead
 ['X', '*', 'X', '*', 'X', '*', 'X', '*'],	#But like, that requires thinking
 ['*', '-', '*', '-', '*', '-', '*', '-'],	#And honestly I thought just writing it out would be easier
-['-', '*', '-', '*', '-', '*', '-', '*'],	#Now I think about it, it was probably a good idea purely for testing
+['-', '*', 'X', '*', '-', '*', '-', '*'],	#Now I think about it, it was probably a good idea purely for testing
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O'],
 ['O', '*', 'O', '*', 'O', '*', 'O', '*'],	#You can move the pieces around to test it out if you want.
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O']]
