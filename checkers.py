@@ -94,10 +94,10 @@ board = [
 while (True):
 	PrintBoard()
 	PlayerTurn(Player1)
-	if Score[Player1] >= 1: break;
+	if Score[Player1] >= 12: break;
 	PrintBoard()			
 	PlayerTurn(Player2)
-	if Score[Player2] >= 1: break;
+	if Score[Player2] >= 12: break;
 
 PrintBoard()
 print("\n-----------------\n\nPlayer 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
