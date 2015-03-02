@@ -41,9 +41,6 @@ def JumpMoveCheck(player, PieceY, PieceX):
 	return False
 
 def MultiJump(player, PieceX, PieceY):
-	# Piece position = moved position.
-	#Already did this before start of function!
-
 	# check if new jump is possible --> if not return(turns over)
 	if(JumpMoveCheck(player, PieceY, PieceX)):#Jump move possible
 		# get input again for new move position
