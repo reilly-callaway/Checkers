@@ -7,7 +7,7 @@ import os
 #If you try to move outside the board, it will screw up but as long as you play by the rules, all should be good :)
 
 def PlayerTurn(player):
-	print('Player {}\'s turn:'.format(player))
+	print('\nPlayer {}\'s turn:'.format(player))
 	PieceX, PieceY = input('Piece?(x,y): ').split(',')
 	PieceX, PieceY = int(PieceX)-1, int(PieceY)-1		#Co-ordinates of the piece you want to move
 	if board[PieceY][PieceX] == player:
@@ -21,8 +21,6 @@ def PlayerTurn(player):
 			board[PieceY][PieceX] = '-'					#^^ Checks if valid move
 			board[MoveY][MoveX] = player 				#Jump move
 			board[int((PieceY+MoveY)/2)][int((PieceX+MoveX)/2)] = '-' #Captures piece your jumping over
-			
-
 			Score[player] += 1
 			PieceX, PieceY = MoveX, MoveY
 			PrintBoard()
@@ -69,7 +67,8 @@ def MultiJump(player, PieceX, PieceY):
 		return
 
 def PrintBoard():
-	print('Player1(X): {} Player2(O): {}'.format(Score[Player1], Score[Player2]))
+	os.system('CLS')				#REMOVE THIS IF USING IDLE!!! WILL NOT WORK WITH IDLE!!!! Used for when running program in terminal/command line.
+	print('Player 1 (X): {} Player 2 (O): {}\n'.format(Score[Player1], Score[Player2]))
 	print('  1 2 3 4 5 6 7 8')
 	for i, j in enumerate(board):
 		print(i+1, end=' ')
@@ -87,21 +86,18 @@ board = [
 ['*', 'X', '*', 'X', '*', 'X', '*', 'X'],	#I could write some fancy loops here instead
 ['X', '*', 'X', '*', 'X', '*', 'X', '*'],	#But like, that requires thinking
 ['*', '-', '*', '-', '*', '-', '*', '-'],	#And honestly I thought just writing it out would be easier
-['-', '*', 'X', '*', '-', '*', '-', '*'],	#Now I think about it, it was probably a good idea purely for testing
+['-', '*', '-', '*', '-', '*', '-', '*'],	#Now I think about it, it was probably a good idea purely for testing
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O'],
 ['O', '*', 'O', '*', 'O', '*', 'O', '*'],	#You can move the pieces around to test it out if you want.
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O']]
 
-os.system('CLS')					#Remove this also if using the IDLE
 while (True):
 	PrintBoard()
 	PlayerTurn(Player1)
-	os.system('CLS')				#Remove this is using the IDLE, if using terminal/command line/cmd/whatever else you kids call it nowerdays:
-	if Score[Player1] >= 12: break;	#It will clear the terminal of all text so it doesn't look like reprinting the board over and over. Just one board :)
+	if Score[Player1] >= 1: break;
 	PrintBoard()			
 	PlayerTurn(Player2)
-	os.system('CLS')				#Remove this one too if using IDLE, I haven't tested it but it will probably break it :(
-	if Score[Player2] >= 12: break;
+	if Score[Player2] >= 1: break;
 
 PrintBoard()
-print("Player 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
+print("\n-----------------\n\nPlayer 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
