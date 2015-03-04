@@ -88,13 +88,16 @@ board = [
 ['O', '*', 'O', '*', 'O', '*', 'O', '*'],	#You can move the pieces around to test it out if you want.
 ['*', 'O', '*', 'O', '*', 'O', '*', 'O']]
 
-while (True):
-	PrintBoard()
-	PlayerTurn(Player1)
-	if Score[Player1] >= 12: break;
-	PrintBoard()			
-	PlayerTurn(Player2)
-	if Score[Player2] >= 12: break;
+def Game():
+	while (True):
+		PrintBoard()
+		PlayerTurn(Player1)
+		if Score[Player1] >= 2: break;
+		PrintBoard()			
+		PlayerTurn(Player2)
+		if Score[Player2] >= 2: break;
 
-PrintBoard()
-print("\n-----------------\n\nPlayer 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
+	PrintBoard()
+	print("\n-----------------\n\nPlayer 1 (X) WINS!!!" if Score[Player1] >= Score[Player2] else "Player 2 (O) WINS!!!")
+	input("Press ENTER to continue")
+	return

@@ -2,6 +2,10 @@
 
 from msvcrt import getch#Magics that will register left/right arrow presses
 from os	import system	#Magics including able clear terminal/command line
+import webbrowser
+
+import checkers
+import settings
 
 # Left '\xe0' 'K' = 224 75
 # Right '\xe0' 'M' = 224 77
@@ -9,16 +13,17 @@ from os	import system	#Magics including able clear terminal/command line
 # ESC ...   = 27
 
 system('MODE 50')
+system('COLOR A')
 
 ArrowPosition = 0
 key = 0
-options = ["Play", "Rules", "Settings", "Option5"]
+options = ["Play", "Rules", "Settings"]
 Space = len(max(options, key=len)) + 4
 
 while key != 27:
 	system('CLS')
 
-	for m in range(20):
+	for m in range(10):
 		print("This is filler text", end=" ")
 	print()
 	
@@ -32,16 +37,15 @@ while key != 27:
 
 	if key == 13:
 		print('Option "{}" Selected'.format(options[ArrowPosition-1]))
-		# if options[ArrowPosition-1] == "Play":
-		# 	Continue to game
-		# elif options[ArrowPosition-1] == "Rules":
-		# 	Continue to Rules
-		# elif options[ArrowPosition-1] == "Settings":
-		# 	Continue to settings
+		if options[ArrowPosition-1] == "Play":
+			checkers.Game()
+		elif options[ArrowPosition-1] == "Rules":
+			webbrowser.open('http://en.wikipedia.org/wiki/Draughts#General_rules', new=2)
+		elif options[ArrowPosition-1] == "Settings":
+			settings.Set()
 	elif key == 224:
 		key = ord(getch())
 		if key == 75 and ArrowPosition > 1:
 			ArrowPosition -= 1
 		elif key == 77 and ArrowPosition < len(options):
 			ArrowPosition += 1
-
