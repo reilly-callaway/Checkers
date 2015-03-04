@@ -1,7 +1,7 @@
-import os
+from os import system
 
-#If using the IDLE; remove all "os.system('CLS')" commands, they are pointed out in comments
-#The command is designed for terminal/command line use.
+system('MODE 50')
+system('COLOR A')
 
 #Important note: No error handling has been incorperated yet, if you enter co-ordinates in incorrectly, it will screw up
 #If you try to move outside the board, it will screw up but as long as you play by the rules, all should be good :)
@@ -64,7 +64,7 @@ def MultiJump(player, PieceX, PieceY):
 		return
 
 def PrintBoard():
-	os.system('CLS')				#REMOVE THIS IF USING IDLE!!! WILL NOT WORK WITH IDLE!!!! Used for when running program in terminal/command line.
+	system('CLS')
 	print('Player 1 (X): {} Player 2 (O): {}\n'.format(Score[Player1], Score[Player2]))
 	print('  1 2 3 4 5 6 7 8')
 	for i, j in enumerate(board):
