@@ -15,7 +15,7 @@ import settings
 system('MODE 50')
 system('COLOR A')
 
-ArrowPosition = 0
+ArrowPosition = 1
 key = 0
 options = ["Play", "Rules", "Settings"]
 Space = len(max(options, key=len)) + 4
