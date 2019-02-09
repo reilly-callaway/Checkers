@@ -1,5 +1,5 @@
 # Checkers
-Text based checkers game made by Reilly Callaway(That's me!) <br><br>
+Text based checkers game made by Reilly Callaway <br><br>
 Rules: http://en.wikipedia.org/wiki/Draughts <br><br>
 Version 0.2 - 28/2/2015 22:29:<br>
     MultiJump move added! Once capturing a peice you will now have the option to jump and capture another peice if available.<br><br>
